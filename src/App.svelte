@@ -27,33 +27,70 @@
 	  }
 	}
   </script>
-  
-  <div>
-	{#if !gameStart}
-	  <h1>Chess Hustler</h1>
-	  <input type="text" bind:value={username} placeholder="Enter username" />
-	  <input type="text" bind:value={opponentAddress} placeholder="Enter Opponent's Wallet Address" />
-	  <button on:click={() => {
-		gameStart = true;
-	  }}>Send Challenge!</button>
-	{:else}
-	  <button on:click={fetchGameResult}>Refresh Game Results</button>
-	{/if}
-  
-	{#if error}
-	  <p class="error">{error}</p>
-	{/if}
-  
-	{#if gameResult}
-	  <h1>Results</h1>
-	  <h2>{gameResult.Black}</h2>
-	  <p>vs</p>
-	  <h2>{gameResult.White}</h2>
-	  <h2>{gameResult.Winner} Wins!</h2>
-	{/if}
-  </div>
+  <body>
+		{#if !gameStart}
+		  <h1>Chess Hustler</h1>
+		  <input type="text" bind:value={username} placeholder="Enter username" />
+		  <input type="text" bind:value={opponentAddress} placeholder="Enter Opponent's Wallet Address" />
+		  <button on:click={() => {
+			gameStart = true;
+		  }}>Send Challenge!</button>
+		{:else}
+		  <button on:click={fetchGameResult}>Refresh Game Results</button>
+		{/if}
+	  
+		{#if error}
+		  <p class="error">{error}</p>
+		  <button on:click={() => {
+			gameStart = false;
+		  }}>Back</button>
+		{/if}
+	  
+		{#if gameResult}
+		  <h1>Results</h1>
+		  <h2>{gameResult.Black}</h2>
+		  <p>vs</p>
+		  <h2>{gameResult.White}</h2>
+		  <h2>{gameResult.Winner} Wins!</h2>
+		{/if}
+  </body>
   
   <style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		padding: 1rem 5rem 8rem;
+		border: 3px solid #171513;
+		background: rgb(22,21,19);
+	background: linear-gradient(0deg, rgba(22,21,19,1) 0%, rgba(45,41,35,1) 100%);
+		text-align: center;
+		color: #BABABA;
+		font-family: "Noto Sans", sans-serif;
+	}
+	input{
+		margin: 5%;
+		width: 15rem;
+		padding: 3%;
+		background: #262422;
+		border: none;
+		border-bottom: 1px solid #D14D00;
+	}
+	input:focus{
+		outline: none;
+	}
+
+	button{
+		margin: 5%;
+		width: 8rem;
+		padding: 3%;
+		border: none;
+		border-bottom: 1px solid #507C1D;
+		color: #cfcfcf;
+		background: #262422;
+	}
+
 	/* Add some basic styles */
 	.error {
 	  color: red;
