@@ -1,0 +1,10 @@
+{
+    "name": "Chess Hustler",
+    "version": "1.0",
+    "description": "Chess Betting App for ETHGlobal!",
+    "permissions": ["activeTab"],
+    "browser_action": {
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+  }
