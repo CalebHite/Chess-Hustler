@@ -6,6 +6,7 @@
 	let error = null; // Variable to store any errors
 	let opponentAddress = '';
 	let gameStart = false;
+	let wagerAmount = 0;
   
 	// Function to fetch game results
 	async function fetchGameResult() {
@@ -32,6 +33,8 @@
 		  <h1>Chess Hustler</h1>
 		  <input type="text" bind:value={username} placeholder="Enter username" />
 		  <input type="text" bind:value={opponentAddress} placeholder="Enter Opponent's Wallet Address" />
+		  <label for="wagerInput">Wager Amount: (Pol):</label>
+		  <input type="number" name="wagerInput" id="wagerInput" bind:value={wagerAmount} placeholder="Enter Opponent's Wallet Address" />
 		  <button on:click={() => {
 			gameStart = true;
 		  }}>Send Challenge!</button>
@@ -47,53 +50,108 @@
 		{/if}
 	  
 		{#if gameResult}
-		  <h1>Results</h1>
-		  <h2>{gameResult.Black}</h2>
+		  <div class="results">
+			<h1>Results</h1>
+		  <h2 class="black">{gameResult.Black}</h2>
 		  <p>vs</p>
-		  <h2>{gameResult.White}</h2>
+		  <h2 class="white">{gameResult.White}</h2>
 		  <h2>{gameResult.Winner} Wins!</h2>
+		  </div>
 		{/if}
   </body>
   
   <style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	body{
-		padding: 1rem 5rem 8rem;
-		border: 3px solid #171513;
-		background: rgb(22,21,19);
-	background: linear-gradient(0deg, rgba(22,21,19,1) 0%, rgba(45,41,35,1) 100%);
-		text-align: center;
-		color: #BABABA;
-		font-family: "Noto Sans", sans-serif;
-	}
-	input{
-		margin: 5%;
-		width: 15rem;
-		padding: 3%;
-		background: #262422;
-		border: none;
-		border-bottom: 1px solid #D14D00;
-	}
-	input:focus{
-		outline: none;
-	}
 
-	button{
-		margin: 5%;
-		width: 8rem;
-		padding: 3%;
-		border: none;
-		border-bottom: 1px solid #507C1D;
-		color: #cfcfcf;
-		background: #262422;
-	}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-	/* Add some basic styles */
-	.error {
-	  color: red;
-	}
-  </style>
+  body {
+    padding: 1rem 5rem 8rem;
+    border: 3px solid #171513;
+    background: rgb(22, 21, 19);
+    background: linear-gradient(0deg, rgba(22, 21, 19, 1) 0%, rgba(45, 41, 35, 1) 100%);
+    text-align: center;
+    color: #BABABA;
+    font-family: "Noto Sans", sans-serif;
+  }
+
+  input {
+    margin: 5%;
+    width: 15rem;
+    padding: 3%;
+    background: #262422;
+    border: none;
+    border-bottom: 1px solid #D14D00;
+    color: white;
+  }
+
+  input:focus {
+    outline: none;
+    border-top: 1px solid white;
+    color: white;
+  }
+
+  button {
+    margin: 5%;
+    width: 8rem;
+    padding: 3%;
+    border: none;
+    border-bottom: 1px solid #507C1D;
+    color: #cfcfcf;
+    background: #262422;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border-top: 1px solid white;
+  }
+
+  .error {
+    color: red;
+    margin-top: 1rem;
+  }
+
+  .results {
+    background-color: #5b5751;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    border: 2px solid #D14D00;
+    color: #f4f4f4;
+  }
+
+  .results h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #D14D00;
+  }
+
+  .results h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: #507C1D;
+  }
+
+  .results p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #BABABA;
+  }
+
+  .results .white{
+	color: white;
+  }
+
+  .results .black{
+	color: black;
+  }
+
+  .results h2:last-of-type {
+    color: #FF4500; /* Highlight the winner */
+  }
+</style>
+
   
