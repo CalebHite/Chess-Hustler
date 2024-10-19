@@ -31,7 +31,7 @@ def get_latest_game_result():
                 result = {
                     "Winner": winner,
                     "White": white_username,
-                    "Black": black_username
+                    "Black": black_username,
                 }
             else:
                 result = {
